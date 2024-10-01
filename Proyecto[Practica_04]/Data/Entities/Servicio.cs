@@ -16,6 +16,6 @@ namespace Data.Domain
         public bool enPromocion { get; set; }
 
         //relacion
-        public List<DetalleTurno> DetalleTurnos { get; set; }
+        internal List<DetalleTurno> DetalleTurnos { get; set; }
     }
 }

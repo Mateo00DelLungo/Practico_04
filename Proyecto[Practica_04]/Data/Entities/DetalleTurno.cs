@@ -17,11 +17,11 @@ namespace Data.Domain
         public string Observaciones { get; set; }
 
         //relacion
-        public int ServicioId { get; set; }
-        public Servicio Servicio { get; set; }
+        internal int ServicioId { get; set; }
+        internal Servicio Servicio { get; set; }
 
         //relacion
-        public int TurnoId { get; set; }
-        public Turno Turno { get; set; }
+        internal int TurnoId { get; set; }
+        internal Turno Turno { get; set; }
     }
 }

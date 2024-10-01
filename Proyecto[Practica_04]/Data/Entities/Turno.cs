@@ -21,7 +21,7 @@ namespace Data.Domain
         public string Cliente { get; set; }
         
         //relacion
-        public List<DetalleTurno> DetallesTurno { get; set; }
+        internal List<DetalleTurno> DetallesTurno { get; set; }
         
     }
 }

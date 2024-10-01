@@ -2,37 +2,44 @@
 using Data.Domain;
 using Data.Interfaces;
 using Data.Repositories;
+using Humanizer;
 using Practico_04.Models;
+using Practico_04.Utils;
 
 namespace Practico_04.Services
 {
     public class ServicioManager
     {
-
-        private readonly IServicioRepository _repository;
-        public ServicioManager(TurnoDbContext context)
+        private readonly IRepository<Servicio> _repository;
+        private readonly IMapper<ServicioDTO,Servicio> _mapper;
+        public ServicioManager(TurnoDbContext context,ServicioMapper mapeador)
         {
             _repository = new ServicioRepository(context);
+            _mapper = mapeador;
         }
-        public bool Save(ServicioDTO dto)
+        public async Task<bool> Save(ServicioDTO dto)
         {
-            return _repository.Save();
+            var value = _mapper.Set(dto);
+            return await _repository.Save(value);
         }
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            return _repository.Delete(id);
+            if (null == await GetById(id)) { return false; }
+            return await _repository.Delete(id);
         }
-        public List<ServicioDTO> GetAll()
+        public async Task<List<ServicioDTO>> GetAll()
         {
-            return Mapper.GetServicio(_repository.GetAll());
+            return _mapper.Get(await _repository.GetAll());
         }
-        public ServicioDTO GetById(int id)
+        public async Task<ServicioDTO> GetById(int id)
         {
-            return Mapper.GetServicio(_repository.GetById(id));
+            return _mapper.Get(await _repository.GetById(id));
         }
-        public bool Update(ServicioDTO dto)
+        public async Task<bool> Update(ServicioDTO dto)
         {
-            return _
+            if(null == await GetById(dto.Id)) { return false; }
+            var value = _mapper.Set(dto);
+            return await _repository.Update(value);
         }
     }
 }

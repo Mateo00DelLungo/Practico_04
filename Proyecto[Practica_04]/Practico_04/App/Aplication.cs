@@ -3,16 +3,18 @@ using Practico_04.Services;
 
 namespace Practico_04.App
 {
-    public class App
+    public class Aplication
     {
-        private readonly ServicioManager _serviceManager;
-        public bool Save<T>(T value)
+        public readonly ServicioManager _serviceManager;
+        public readonly DetalleTurnoManager _detalleTurnoManager;
+        public readonly TurnoManager _turnoManager;
+        public Aplication()
         {
-            switch (value)
-            {
-                case value.GetType() == Servicio:
-                        return _serviceManager.Save(value);
-            }
-        };
+
+        }
+        public static bool Validar()
+        {
+            return true;
+        }
     }
 }

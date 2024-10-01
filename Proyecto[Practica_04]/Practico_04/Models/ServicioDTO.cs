@@ -1,10 +1,25 @@
-﻿namespace Practico_04.Models
+﻿using System.Reflection;
+
+namespace Practico_04.Models
 {
-    public class ServicioDTO
+    public class ServicioDTO : IDataTransferObject
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
         public double Costo { get; set; }
         public bool enPromocion { get; set; }
+
+        public bool Validate()
+        {
+            if(Id < 0 || string.IsNullOrEmpty(Nombre) || Costo <= 0)
+            {
+                return false;
+            }
+            return true;
+        }
+        public override string ToString()
+        {
+            return $"Servicio: {Nombre} : ${Costo}. En promocion: {enPromocion}";
+        }
     }
 }
