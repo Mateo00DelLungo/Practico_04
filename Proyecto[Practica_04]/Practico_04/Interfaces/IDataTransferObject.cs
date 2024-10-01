@@ -1,4 +1,4 @@
-﻿namespace Practico_04.Models
+﻿namespace Practico_04.Interfaces
 {
     public interface IDataTransferObject
     {

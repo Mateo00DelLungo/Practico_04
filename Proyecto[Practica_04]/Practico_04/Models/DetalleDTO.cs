@@ -1,4 +1,6 @@
-﻿namespace Practico_04.Models
+﻿using Practico_04.Interfaces;
+
+namespace Practico_04.Models
 {
     public class DetalleDTO : IDataTransferObject
     {

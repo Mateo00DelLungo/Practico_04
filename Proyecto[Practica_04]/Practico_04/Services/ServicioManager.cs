@@ -3,18 +3,19 @@ using Data.Domain;
 using Data.Interfaces;
 using Data.Repositories;
 using Humanizer;
+using Practico_04.Interfaces;
 using Practico_04.Models;
-using Practico_04.Utils;
 
 namespace Practico_04.Services
 {
-    public class ServicioManager
+    public class ServicioManager : IManager<ServicioDTO>
     {
         private readonly IRepository<Servicio> _repository;
         private readonly IMapper<ServicioDTO,Servicio> _mapper;
-        public ServicioManager(TurnoDbContext context,ServicioMapper mapeador)
+        public ServicioManager(IRepository<Servicio> repository,
+            IMapper<ServicioDTO,Servicio> mapeador)
         {
-            _repository = new ServicioRepository(context);
+            _repository = repository;
             _mapper = mapeador;
         }
         public async Task<bool> Save(ServicioDTO dto)

@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Data.Domain;
+using Data.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Practico_04.App;
+using Practico_04.Interfaces;
 using Practico_04.Models;
 
 namespace Practico_04.Controllers
@@ -10,9 +13,10 @@ namespace Practico_04.Controllers
     public class ServiceController : ControllerBase
     {
         private readonly Aplication app;
-        public ServiceController()
+        public ServiceController(IManager<ServicioDTO> servicioManager, 
+             IManager<DetalleDTO> detalleManager, IManager<TurnoDTO> turnoManager)
         {
-            app = new Aplication();
+            app = new Aplication(servicioManager, detalleManager , turnoManager);
         }
 
         [HttpGet]
@@ -88,13 +92,13 @@ namespace Practico_04.Controllers
         {
             try
             {
-                if(!await app._serviceManager.Delete(id))
-                return Ok();
+                if(!await app._serviceManager.Delete(id)) 
+                { return NotFound("No se encontro el ID del objeto"); }
+                return Ok("Objeto eliminado exitosamente");
             }
             catch (Exception)
             {
-
-                throw;
+                return StatusCode(500,"Internal Server Error");
             }
         }
     }

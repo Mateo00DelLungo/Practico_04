@@ -1,4 +1,4 @@
-﻿namespace Practico_04.Utils
+﻿namespace Practico_04.Interfaces
 {
     public interface IMapper<Input, Output>
     {

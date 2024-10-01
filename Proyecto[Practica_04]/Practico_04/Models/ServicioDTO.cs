@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Practico_04.Interfaces;
 
 namespace Practico_04.Models
 {

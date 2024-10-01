@@ -9,7 +9,7 @@ namespace Practico_04.Utils
         {
             return base.Set(dto);
         }
-        public List<DetalleTurno> Set( List<DetalleDTO> dtolst)
+        public List<DetalleTurno> Set(List<DetalleDTO> dtolst)
         {
             return base.Set(dtolst);
         }
