@@ -8,7 +8,7 @@ namespace Practico_04.Utils
         where Input : new()
         where Output : new()
     {
-        private void GetProperties(PropertyInfo property, object fromValue, object whereToValue)
+        private void TransferProperty(PropertyInfo property, object fromValue, object whereToValue)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace Practico_04.Utils
             PropertyInfo[] properties = typeof(Input).GetProperties();
             foreach (PropertyInfo property in properties)
             {
-                GetProperties(property, entity, oValue);
+                TransferProperty(property, entity, oValue);
             }
             return oValue;
         }
@@ -37,7 +37,7 @@ namespace Practico_04.Utils
             PropertyInfo[] properties = typeof(Output).GetProperties();
             foreach (PropertyInfo property in properties)
             {
-                GetProperties(property, oValue, entity);
+                TransferProperty(property, oValue, entity);
             }
             return entity;
         }
